@@ -47,7 +47,7 @@ public class EnemyAI : MonoBehaviour
 
     void Shoot(Vector2 direction)
     {
-        animator.SetTrigger("shoot");
+        //animator.SetTrigger("shoot");
         GameObject bullet = Instantiate(bulletPrefab, transform.position, Quaternion.identity);    // Spawn a new bullet at the fire point
         Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();    // Get the bullet's rigidbody component
         rb.AddForce(direction * bulletForce, ForceMode2D.Impulse);    // Add a force to the bullet in the direction of the player

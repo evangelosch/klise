@@ -37,7 +37,7 @@ public class PlayerController : MonoBehaviour
         MovementDirection();
     }
 
-    void OnFire()
+    void OnParry()
     {
       
         animator.SetTrigger("swordAttack");

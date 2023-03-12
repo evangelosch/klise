@@ -57,9 +57,11 @@ public class SwordAttack : MonoBehaviour {
             Bullet bullet = other.GetComponent<Bullet>();
             if (bullet != null)
             {
+                Rigidbody2D bulletRigidbody = bullet.GetComponent<Rigidbody2D>();
+                bulletRigidbody.velocity *= -3f;
                 audioSource.GetComponent<AudioSource>().Play();
                 Debug.Log("bullet hit");
-                bullet.destroyBullet();
+                
 
             }
 
