@@ -108,6 +108,8 @@ GameObject:
   - component: {fileID: 8639214298188202245}
   - component: {fileID: 6727768024224032567}
   - component: {fileID: 264397906932979417}
+  - component: {fileID: 4377610522469810073}
+  - component: {fileID: 4838920723415052703}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -334,3 +336,38 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
+--- !u!114 &4377610522469810073
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6176860624369105652}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a3a60fd04bd88af438ed5e817bd8f206, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  crosshairPrefab: {fileID: 0}
+  shootingPoint: {fileID: 0}
+  shootingSpeed: 10
+  enemyLayer:
+    serializedVersion: 2
+    m_Bits: 0
+  bulletPrefab: {fileID: 0}
+  shootCooldownTime: 1.5
+--- !u!114 &4838920723415052703
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6176860624369105652}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6b8667a8e4af48c4fab60b35977c3446, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lockOnRange: 5
+  lockOnKey: 9
+  lockOnIndicatorPrefab: {fileID: 0}
