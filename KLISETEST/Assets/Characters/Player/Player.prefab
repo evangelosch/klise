@@ -373,7 +373,7 @@ MonoBehaviour:
   lockOnRange: 5
   lockOnKey: 9
   lockOnIndicatorPrefab: {fileID: 0}
-  bulletPrefab: {fileID: 0}
+  bulletPrefab: {fileID: 5791795599664740248, guid: 01383ce138bdc0143a1725f5cc3d1dbb, type: 3}
 --- !u!114 &2615117153777473052
 MonoBehaviour:
   m_ObjectHideFlags: 0

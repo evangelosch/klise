@@ -1,57 +1,23 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class DashController : MonoBehaviour
+public class TeleportPlayer : MonoBehaviour
 {
-    public float moveSpeed = 5f;
-    public float dashSpeed = 10f;
-    public float dashTime = 1f;
-    public float dashCooldown = 1f;
-    public float dashDistance = 5f;
+    [SerializeField] private float teleportDistance = 0.3f;
+    private PlayerInput playerInput;
 
-    private Vector2 moveInput;
-    private Rigidbody2D rigidbody2D;
-    private bool isDashing = false;
-    private float dashTimer = 0f;
-    private float dashCooldownTimer = 0f;
-    private Vector2 dashDirection;
-
-    
-
-
-
-    void OnDash()
+    private void Awake()
     {
-       
-        if (dashCooldownTimer <= 0)
+        playerInput = GetComponent<PlayerInput>();
+    }
+
+    private void Update()
+    {
+        if (playerInput.actions["Dash"].triggered)
         {
-            isDashing = true;
-            dashTimer = dashTime;
-            dashCooldownTimer = dashCooldown;
-            dashDirection = moveInput.normalized;
-
-            rigidbody2D.MovePosition(rigidbody2D.position + dashDirection * dashSpeed * Time.fixedDeltaTime);
-            Debug.Log("dash");
-            dashTimer -= Time.deltaTime;
-           
-                isDashing = false;
-            
-
+            Vector2 movementInput = playerInput.actions["Move"].ReadValue<Vector2>();
+            Vector3 movementDirection = new Vector3(movementInput.x, 0f, movementInput.y).normalized;
+            transform.position += movementDirection * teleportDistance;
         }
-    }
-
-
-
-    void OnMove(InputValue value)
-    {
-        moveInput = value.Get<Vector2>();
-    }
-
-    void FixedUpdate()
-    {
-        rigidbody2D = GetComponent<Rigidbody2D>();
-        dashCooldownTimer -= Time.fixedDeltaTime;
     }
 }
