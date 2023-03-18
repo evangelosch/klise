@@ -18,6 +18,7 @@ public class PlayerController : MonoBehaviour
     private Animator animator;
     private SpriteRenderer spriteRenderer;
 
+
     public SwordAttack swordAttack;
 
     // Start is called before the first frame update

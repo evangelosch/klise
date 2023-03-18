@@ -79,26 +79,7 @@ public class PlayerShooting : MonoBehaviour
         }
     }
 
-    public void ShootSpecial(Transform target)
-    {
-        Bullet bullet = Instantiate(bulletPrefab, new Vector2(shootingPoint.position.x, shootingPoint.position.y), Quaternion.identity);
-        Debug.Log("shooting special");
-        // Set the velocity of the bullet to the shooting direction multiplied by the shooting speed
-        Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
-        rb.velocity = shootingDirection * shootingSpeed;
-        //SpriteRenderer spriteRenderer = bullet.GetComponent<SpriteRenderer>();
-        //spriteRenderer.flipX = true;
-
-        // Destroy the bullet after a certain amount of time
-        Destroy(bullet, 2f);
-
-        // Check if the bullet hit an enemy and destroy it
-        RaycastHit2D hit = Physics2D.Raycast(shootingPoint.position, shootingDirection, Mathf.Infinity, enemyLayer);
-        /*if (target != null)
-        {
-            Destroy(target.gameObject);
-        }*/
-    }
+   
     IEnumerator StartCooldown()
     {
         yield return new WaitForSeconds(shootCooldownTime);

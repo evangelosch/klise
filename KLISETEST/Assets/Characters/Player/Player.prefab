@@ -110,6 +110,7 @@ GameObject:
   - component: {fileID: 264397906932979417}
   - component: {fileID: 4377610522469810073}
   - component: {fileID: 4838920723415052703}
+  - component: {fileID: 2615117153777473052}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -355,6 +356,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 0
   bulletPrefab: {fileID: 0}
+  enemyPosition: {fileID: 0}
   shootCooldownTime: 1.5
 --- !u!114 &4838920723415052703
 MonoBehaviour:
@@ -371,3 +373,21 @@ MonoBehaviour:
   lockOnRange: 5
   lockOnKey: 9
   lockOnIndicatorPrefab: {fileID: 0}
+  bulletPrefab: {fileID: 0}
+--- !u!114 &2615117153777473052
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6176860624369105652}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6502bc6d23132d444afb927fb9a2692e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveSpeed: 5
+  dashSpeed: 10
+  dashTime: 0.25
+  dashCooldown: 1
+  dashDistance: 5

@@ -8,6 +8,8 @@ public class EnemyLockOn : MonoBehaviour
     private Transform target; // reference to the enemy transform
     private GameObject lockOnIndicator; // reference to the lock-on indicator game object
     private bool lockOnEnabled = false;
+    public Bullet bulletPrefab;
+    private Transform shootingPoint;
     private GameObject player;
 
 
@@ -15,6 +17,12 @@ public class EnemyLockOn : MonoBehaviour
     {
         player = GameObject.FindGameObjectWithTag("Player");
        
+
+    }
+
+    private void Update()
+    {
+        shootingPoint = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
     }
     void OnLockEnemy()
     {
@@ -43,7 +51,7 @@ public class EnemyLockOn : MonoBehaviour
                 if (lockOnIndicatorPrefab != null && target != null)
                 {
                     lockOnIndicator = Instantiate(lockOnIndicatorPrefab, target.position, Quaternion.identity);
-                    player.GetComponent<PlayerShooting>().ShootSpecial(target);
+                    ShootSpecial(target);
                 }
             }
             lockOnEnabled = true;
@@ -54,6 +62,17 @@ public class EnemyLockOn : MonoBehaviour
             lockOnEnabled = false;
             Debug.Log("piou");
         }
+    }
+
+    public void ShootSpecial(Transform target)
+    {
+        Bullet bullet = Instantiate(bulletPrefab, new Vector2(shootingPoint.position.x, shootingPoint.position.y), Quaternion.identity);
+        Debug.Log("shooting special");
+        // Set the velocity of the bullet to the shooting direction multiplied by the shooting speed
+        //Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
+        //rb.velocity = target.transform.position;
+        bullet.GetComponent<Rigidbody2D>().velocity = (target.transform.position - transform.position).normalized * 10f;
+       
     }
 
     private void OnDestroy()
