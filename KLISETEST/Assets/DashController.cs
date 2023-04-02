@@ -7,7 +7,6 @@ public class DashController : MonoBehaviour
 {
     [SerializeField] private float teleportDistance = 5.0f;
     private PlayerInput playerInput;
-    private InputActionMap inputActionMap;
     private Vector2 movementInput;
     private Rigidbody2D rigidbody2d;
 
@@ -15,11 +14,10 @@ public class DashController : MonoBehaviour
     {
         playerInput = GetComponent<PlayerInput>();
         rigidbody2d = GetComponent<Rigidbody2D>();
-        inputActionMap = playerInput.actions.FindActionMap("Player");
-      
-        inputActionMap.FindAction("Dash").performed += _ => Dash();
-        inputActionMap.FindAction("Move").performed += ctx => movementInput = ctx.ReadValue<Vector2>();
-        inputActionMap.FindAction("Move").canceled += _ => movementInput = Vector2.zero;
+        
+        playerInput.actions.FindActionMap("Player").FindAction("Dash").performed += _ => Dash();
+        playerInput.actions.FindActionMap("Player").FindAction("Move").performed += ctx => movementInput = ctx.ReadValue<Vector2>();
+        playerInput.actions.FindActionMap("Player").FindAction("Move").canceled += _ => movementInput = Vector2.zero;
     }
 
     private void Dash()
@@ -30,11 +28,11 @@ public class DashController : MonoBehaviour
 
     private void OnEnable()
     {
-        inputActionMap.Enable();
+        playerInput.actions.FindActionMap("Player").Enable();
     }
 
     private void OnDisable()
     {
-        inputActionMap.Disable();
+        playerInput.actions.FindActionMap("Player").Disable();
     }
 }
