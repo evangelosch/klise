@@ -110,7 +110,7 @@ GameObject:
   - component: {fileID: 264397906932979417}
   - component: {fileID: 4377610522469810073}
   - component: {fileID: 4838920723415052703}
-  - component: {fileID: 2615117153777473052}
+  - component: {fileID: 1120508305664899097}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -175,7 +175,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 1835166695, guid: c08d11f32586a7b4bbe529793bda1fd8, type: 3}
+  m_Sprite: {fileID: -1546661473, guid: c08d11f32586a7b4bbe529793bda1fd8, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -183,7 +183,7 @@ SpriteRenderer:
   m_Size: {x: 0.48, y: 0.48}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!114 &4286902691393519245
@@ -337,6 +337,7 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!114 &4377610522469810073
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -349,13 +350,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a3a60fd04bd88af438ed5e817bd8f206, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  crosshairPrefab: {fileID: 0}
+  crosshairPrefab: {fileID: 1893502543784350872, guid: 2dd2c7a555683084f9d2b74a38583b2b, type: 3}
   shootingPoint: {fileID: 0}
   shootingSpeed: 10
   enemyLayer:
     serializedVersion: 2
     m_Bits: 0
-  bulletPrefab: {fileID: 0}
+  bulletPrefab: {fileID: 5791795599664740248, guid: 01383ce138bdc0143a1725f5cc3d1dbb, type: 3}
   enemyPosition: {fileID: 0}
   shootCooldownTime: 1.5
 --- !u!114 &4838920723415052703
@@ -372,9 +373,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lockOnRange: 5
   lockOnKey: 9
-  lockOnIndicatorPrefab: {fileID: 0}
+  lockOnIndicatorPrefab: {fileID: 4000429670359027709, guid: 6e0eafa19972a584eb08931730551987, type: 3}
   bulletPrefab: {fileID: 5791795599664740248, guid: 01383ce138bdc0143a1725f5cc3d1dbb, type: 3}
---- !u!114 &2615117153777473052
+--- !u!114 &1120508305664899097
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -386,8 +387,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6502bc6d23132d444afb927fb9a2692e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 5
-  dashSpeed: 10
-  dashTime: 0.25
-  dashCooldown: 1
-  dashDistance: 5
+  teleportDistance: 0.3
+  dashLayerMask:
+    serializedVersion: 2
+    m_Bits: 0
