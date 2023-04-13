@@ -1,4 +1,3 @@
-
 using System.Collections;
 using UnityEngine;
 
@@ -11,7 +10,7 @@ public class PlayerShooting : MonoBehaviour
 
     private GameObject crosshair;
     private Vector2 shootingDirection;
-    public PlayerBullet bulletPrefab; // Renamed to PlayerBulletPrefab
+    public PlayerBullet bulletPrefab;
     public Transform enemyPosition;
 
     public float shootCooldownTime = 1.5f;
@@ -23,6 +22,7 @@ public class PlayerShooting : MonoBehaviour
     {
         enemyPosition = GameObject.FindGameObjectWithTag("Enemy").GetComponent<Transform>();
         Cursor.visible = false;
+        crosshair = Instantiate(crosshairPrefab);
     }
 
     void Update()
@@ -31,39 +31,35 @@ public class PlayerShooting : MonoBehaviour
         {
             canShoot = true;
         }
+
         shootingPoint = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
 
         Vector3 mousePosition = Input.mousePosition;
         mousePosition.z = 10f;
         Vector3 worldPosition = Camera.main.ScreenToWorldPoint(mousePosition);
-
-        if (crosshair == null)
-        {
-            crosshair = Instantiate(crosshairPrefab, worldPosition, Quaternion.identity);
-        }
-        else
-        {
-            crosshair.transform.position = worldPosition;
-        }
+        crosshair.transform.position = new Vector3(worldPosition.x, worldPosition.y, 0f);
 
         shootingDirection = (worldPosition - shootingPoint.position).normalized;
+
 
     }
 
     void OnFire()
-        {
-            Shoot();
-        }
+    {
+        Shoot();
+    }
+
     void Shoot()
     {
         if (canShoot)
         {
             PlayerBullet bullet = Instantiate(bulletPrefab, shootingPoint.position, Quaternion.identity);
+            bullet.transform.SetParent(null);
 
             Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
-            rb.velocity = shootingDirection * shootingSpeed;
+            rb.velocity = new Vector2(shootingDirection.x, shootingDirection.y) * shootingSpeed;
 
-            Destroy(bullet, 2f);
+            Destroy(bullet.gameObject, 2f);
 
             RaycastHit2D hit = Physics2D.Raycast(shootingPoint.position, shootingDirection, Mathf.Infinity, enemyLayer);
             if (hit.collider != null)
@@ -85,4 +81,6 @@ public class PlayerShooting : MonoBehaviour
         canShoot = true;
     }
 }
-   
+
+
+
