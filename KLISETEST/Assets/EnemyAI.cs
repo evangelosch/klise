@@ -5,11 +5,11 @@ public class EnemyAI : MonoBehaviour
 {
     private Transform player;
     public float moveSpeed = 0.1f;
-    public GameObject bulletPrefab;
-    private Transform firePoint;
+    private GameObject bulletPrefab;
+    //private Transform firePoint;
     public float fireRate = 1f;
 
-    private float _nextFire;
+    //private float _nextFire;
 
     private Rigidbody2D _rb;
     private Vector2 _movement;
@@ -21,7 +21,8 @@ public class EnemyAI : MonoBehaviour
     private void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
-        firePoint = this.transform;
+        bulletPrefab = Resources.Load<GameObject>("EnemyBulletPrefab");
+        //firePoint = this.transform;
         _rb = GetComponent<Rigidbody2D>();
         StartCoroutine(ShootAtRandomIntervals());
     }
