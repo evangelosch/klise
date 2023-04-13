@@ -8,6 +8,8 @@ TagManager:
   - bullet
   - parry
   - Walls
+  - slider
+  - HealthSlider
   layers:
   - Default
   - TransparentFX

@@ -1,6 +1,8 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
-public class Bullet : MonoBehaviour
+public class PlayerBullet : MonoBehaviour
 {
     Rigidbody2D rigidBody;
 
@@ -21,7 +23,7 @@ public class Bullet : MonoBehaviour
         Destroy(gameObject);
     }
 
-    private void OnTriggerEnter2D(Collider2D collider)
+  /*  private void OnTriggerEnter2D(Collider2D collider)
     {
         if (collider.gameObject.CompareTag("Player"))
         {
@@ -30,5 +32,5 @@ public class Bullet : MonoBehaviour
             playerHealth.TakeDamage(1);
             destroyBullet();
         }
-    }
+    }*/
 }

@@ -1,31 +1,38 @@
+
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerShooting : MonoBehaviour
 {
-    public GameObject crosshairPrefab; // Prefab for the crosshair object
-    public Transform shootingPoint; // Point from which the player will shoot
-    public float shootingSpeed = 10f; // Speed at which the bullet will travel
-    public LayerMask enemyLayer; // Layer where the enemies are placed
+    public GameObject crosshairPrefab;
+    public Transform shootingPoint;
+    public float shootingSpeed = 10f;
+    public LayerMask enemyLayer;
 
-    private GameObject crosshair; // Reference to the current crosshair object
-    private Vector2 shootingDirection; // Direction in which the player will shoot
-    public Bullet bulletPrefab;
+    private GameObject crosshair;
+    private Vector2 shootingDirection;
+    public PlayerBullet bulletPrefab; // Renamed to PlayerBulletPrefab
     public Transform enemyPosition;
 
     public float shootCooldownTime = 1.5f;
     private bool canShoot = true;
 
+    public TimeController timeController;
+
     private void Start()
     {
         enemyPosition = GameObject.FindGameObjectWithTag("Enemy").GetComponent<Transform>();
+        Cursor.visible = false;
     }
-    // Update is called once per frame
+
     void Update()
     {
+        if (timeController.IsTimeSlowed)
+        {
+            canShoot = true;
+        }
         shootingPoint = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
-        // Update the crosshair position based on the mouse position
+
         Vector3 mousePosition = Input.mousePosition;
         mousePosition.z = 10f;
         Vector3 worldPosition = Camera.main.ScreenToWorldPoint(mousePosition);
@@ -39,55 +46,43 @@ public class PlayerShooting : MonoBehaviour
             crosshair.transform.position = worldPosition;
         }
 
-        // Calculate the shooting direction
         shootingDirection = (worldPosition - shootingPoint.position).normalized;
 
- 
-       
     }
 
     void OnFire()
-    {
-        Shoot();
-    }
-
+        {
+            Shoot();
+        }
     void Shoot()
     {
-
         if (canShoot)
         {
-            // Instantiate a bullet object at the shooting point
-            Bullet bullet = Instantiate(bulletPrefab, new Vector2(shootingPoint.position.x, shootingPoint.position.y), Quaternion.identity);
-           
-            // Set the velocity of the bullet to the shooting direction multiplied by the shooting speed
+            PlayerBullet bullet = Instantiate(bulletPrefab, shootingPoint.position, Quaternion.identity);
+
             Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
             rb.velocity = shootingDirection * shootingSpeed;
-            //SpriteRenderer spriteRenderer = bullet.GetComponent<SpriteRenderer>();
-            //spriteRenderer.flipX = true;
 
-            // Destroy the bullet after a certain amount of time
             Destroy(bullet, 2f);
 
-            // Check if the bullet hit an enemy and destroy it
             RaycastHit2D hit = Physics2D.Raycast(shootingPoint.position, shootingDirection, Mathf.Infinity, enemyLayer);
             if (hit.collider != null)
             {
                 Destroy(hit.collider.gameObject);
             }
-            canShoot = false;
-            StartCoroutine(StartCooldown());
+
+            if (!timeController.IsTimeSlowed)
+            {
+                canShoot = false;
+                StartCoroutine(StartCooldown());
+            }
         }
     }
 
-   
     IEnumerator StartCooldown()
     {
         yield return new WaitForSeconds(shootCooldownTime);
         canShoot = true;
-        
     }
-
-
-
-
 }
+   

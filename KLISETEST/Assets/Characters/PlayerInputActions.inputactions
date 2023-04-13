@@ -47,7 +47,7 @@
                     "id": "e6ea6700-8f2e-48f1-9f0b-6809c7f26d0d",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": "Tap",
+                    "interactions": "Tap(duration=0.4,pressPoint=0.1)",
                     "initialStateCheck": true
                 },
                 {
@@ -58,6 +58,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
+                },
+                {
+                    "name": "SlowTime",
+                    "type": "Button",
+                    "id": "338c5b44-299e-450c-8145-cea00172f0d2",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -252,9 +261,9 @@
                     "name": "",
                     "id": "67e2c14a-88d0-48fc-9c9c-d2310b173341",
                     "path": "<Keyboard>/tab",
-                    "interactions": "",
+                    "interactions": "Hold",
                     "processors": "",
-                    "groups": "",
+                    "groups": "Keyboard&Mouse",
                     "action": "LockEnemy",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -267,6 +276,17 @@
                     "processors": "",
                     "groups": "Keyboard&Mouse",
                     "action": "Dash",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "aad5f21c-7415-42fc-9329-8ca635b2cf2b",
+                    "path": "<Keyboard>/shift",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "SlowTime",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
