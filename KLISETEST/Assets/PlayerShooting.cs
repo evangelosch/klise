@@ -3,28 +3,30 @@ using UnityEngine;
 
 public class PlayerShooting : MonoBehaviour
 {
-    public GameObject crosshairPrefab;
-    public Transform shootingPoint;
+    private GameObject crosshairPrefab;
+    private Transform shootingPoint;
     public float shootingSpeed = 10f;
     public LayerMask enemyLayer;
 
     private GameObject crosshair;
     private Vector2 shootingDirection;
-    public PlayerBullet bulletPrefab;
-   
+    private GameObject bulletPrefab;
 
     public float shootCooldownTime = 1.5f;
     private bool canShoot = true;
 
-    private TimeController timeController; // Made private without SerializeField
+    private TimeController timeController;
 
     private void Start()
     {
-        
         Cursor.visible = false;
+        crosshairPrefab = Resources.Load<GameObject>("CrosshairPrefab");
         crosshair = Instantiate(crosshairPrefab);
 
-        timeController = GetComponent<TimeController>(); // Get TimeController component attached to the same GameObject
+        bulletPrefab = Resources.Load<GameObject>("PlayerBulletPrefab");
+        timeController = GetComponent<TimeController>();
+
+        shootingPoint = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
     }
 
     void Update()
@@ -33,8 +35,6 @@ public class PlayerShooting : MonoBehaviour
         {
             canShoot = true;
         }
-
-        shootingPoint = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
 
         Vector3 mousePosition = Input.mousePosition;
         mousePosition.z = 10f;
@@ -53,7 +53,7 @@ public class PlayerShooting : MonoBehaviour
     {
         if (canShoot)
         {
-            PlayerBullet bullet = Instantiate(bulletPrefab, shootingPoint.position, Quaternion.identity);
+            GameObject bullet = Instantiate(bulletPrefab, shootingPoint.position, Quaternion.identity);
             bullet.transform.SetParent(null);
 
             Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();

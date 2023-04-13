@@ -10,6 +10,8 @@ TagManager:
   - Walls
   - slider
   - HealthSlider
+  - playerBullet
+  - crosshair
   layers:
   - Default
   - TransparentFX

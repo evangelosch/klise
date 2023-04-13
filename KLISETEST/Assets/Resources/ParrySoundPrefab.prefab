@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 6406158781144370327}
   - component: {fileID: 5101241806542048162}
   m_Layer: 0
-  m_Name: ParrySound
+  m_Name: ParrySoundPrefab
   m_TagString: parry
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
