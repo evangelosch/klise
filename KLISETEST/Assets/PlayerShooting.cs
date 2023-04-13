@@ -11,18 +11,20 @@ public class PlayerShooting : MonoBehaviour
     private GameObject crosshair;
     private Vector2 shootingDirection;
     public PlayerBullet bulletPrefab;
-    public Transform enemyPosition;
+   
 
     public float shootCooldownTime = 1.5f;
     private bool canShoot = true;
 
-    public TimeController timeController;
+    private TimeController timeController; // Made private without SerializeField
 
     private void Start()
     {
-        enemyPosition = GameObject.FindGameObjectWithTag("Enemy").GetComponent<Transform>();
+        
         Cursor.visible = false;
         crosshair = Instantiate(crosshairPrefab);
+
+        timeController = GetComponent<TimeController>(); // Get TimeController component attached to the same GameObject
     }
 
     void Update()
@@ -40,8 +42,6 @@ public class PlayerShooting : MonoBehaviour
         crosshair.transform.position = new Vector3(worldPosition.x, worldPosition.y, 0f);
 
         shootingDirection = (worldPosition - shootingPoint.position).normalized;
-
-
     }
 
     void OnFire()
@@ -81,6 +81,3 @@ public class PlayerShooting : MonoBehaviour
         canShoot = true;
     }
 }
-
-
-
