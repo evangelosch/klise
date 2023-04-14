@@ -4,16 +4,18 @@ public class EnemyLockOn : MonoBehaviour
 {
     public float lockOnRange = 5f;
     public KeyCode lockOnKey = KeyCode.Tab;
-    public GameObject lockOnIndicatorPrefab;
+    private GameObject lockOnIndicatorPrefab;
     private Transform target;
     private GameObject lockOnIndicator;
     private bool lockOnEnabled = false;
-    public Bullet bulletPrefab;
+    public GameObject bulletPrefab;
     private Transform shootingPoint;
     private GameObject player;
 
     private void Start()
     {
+        lockOnIndicatorPrefab = Resources.Load<GameObject>("LockOnIndicatorPrefab");
+        bulletPrefab = Resources.Load<GameObject>("PlayerBulletPrefab");
         player = GameObject.FindGameObjectWithTag("Player");
         shootingPoint = player.transform;
     }
@@ -66,7 +68,7 @@ public class EnemyLockOn : MonoBehaviour
 
     public void ShootSpecial(Transform target)
     {
-        Bullet bullet = Instantiate(bulletPrefab, new Vector2(shootingPoint.position.x, shootingPoint.position.y), Quaternion.identity);
+        GameObject bullet = Instantiate(bulletPrefab, new Vector2(shootingPoint.position.x, shootingPoint.position.y), Quaternion.identity);
         bullet.GetComponent<Rigidbody2D>().velocity = (target.transform.position - transform.position).normalized * 10f;
     }
 

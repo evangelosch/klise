@@ -6,7 +6,7 @@ public class DashController : MonoBehaviour
     [SerializeField] private float teleportDistance = 5.0f;
     [SerializeField] private float bulletDetectionRadius = 0.5f; // Add this line to set the bullet detection radius
     [SerializeField] private string bulletTag = "bullet"; // Add this line to set the bullet tag
-    [SerializeField] private TimeController timeController; // Add this line to reference the TimeController script
+    private TimeController timeController; // Add this line to reference the TimeController script
 
     private PlayerInput playerInput;
     private Vector2 movementInput;
@@ -16,6 +16,7 @@ public class DashController : MonoBehaviour
     {
         playerInput = GetComponent<PlayerInput>();
         rigidbody2d = GetComponent<Rigidbody2D>();
+        timeController = GetComponent<TimeController>();
 
         playerInput.actions.FindActionMap("Player").FindAction("Dash").performed += _ => Dash();
         playerInput.actions.FindActionMap("Player").FindAction("Move").performed += ctx => movementInput = ctx.ReadValue<Vector2>();
