@@ -19,7 +19,7 @@ public class PlayerShooting : MonoBehaviour
 
     private void Start()
     {
-        Cursor.visible = false;
+       
         crosshairPrefab = Resources.Load<GameObject>("CrosshairPrefab");
         crosshair = Instantiate(crosshairPrefab);
 
@@ -27,6 +27,7 @@ public class PlayerShooting : MonoBehaviour
         timeController = GetComponent<TimeController>();
 
         shootingPoint = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
+        Cursor.visible = false;
     }
 
     void Update()

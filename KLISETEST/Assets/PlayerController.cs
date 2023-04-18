@@ -8,7 +8,7 @@ public class PlayerController : MonoBehaviour
     public ContactFilter2D movementFilter;
     public float collisionOffset = 0.05f;
 
-    private Vector2 movementInput;
+   // private Vector2 MovementInput;
     private Rigidbody2D rigidbody2D;
     private Animator animator;
     private SpriteRenderer spriteRenderer;
@@ -29,13 +29,13 @@ public class PlayerController : MonoBehaviour
 
     private void PlayerMovement()
     {
-        if (movementInput == Vector2.zero)
+        if (MovementInput == Vector2.zero)
         {
             animator.SetBool("isMoving", false);
             return;
         }
 
-        bool isMovementSuccess = TryMove(movementInput) || TryMove(new Vector2(movementInput.x, 0)) || TryMove(new Vector2(0, movementInput.y));
+        bool isMovementSuccess = TryMove(MovementInput) || TryMove(new Vector2(MovementInput.x, 0)) || TryMove(new Vector2(0, MovementInput.y));
         animator.SetBool("isMoving", isMovementSuccess);
     }
 
@@ -55,14 +55,15 @@ public class PlayerController : MonoBehaviour
 
     private void OnMove(InputValue movementValue)
     {
-        movementInput = movementValue.Get<Vector2>();
-        if (movementInput != Vector2.zero)
+        MovementInput = movementValue.Get<Vector2>();
+        //MovementInput = movementValue.Get<Vector2>();
+        if (MovementInput != Vector2.zero)
         {
-            animator.SetFloat("Xinput", movementInput.x);
-            animator.SetFloat("Yinput", movementInput.y);
+            animator.SetFloat("Xinput", MovementInput.x);
+            animator.SetFloat("Yinput", MovementInput.y);
 
         }
-        if (movementInput.x < 0){
+        if (MovementInput.x < 0){
             spriteRenderer.flipX= true;
         }
         else
@@ -77,5 +78,7 @@ public class PlayerController : MonoBehaviour
        
     }
 
-    
+    public Vector2 MovementInput { get; private set; }
+
+
 }
