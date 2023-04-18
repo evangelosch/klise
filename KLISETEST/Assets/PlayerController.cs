@@ -12,7 +12,7 @@ public class PlayerController : MonoBehaviour
     private Rigidbody2D rigidbody2D;
     private Animator animator;
     private SpriteRenderer spriteRenderer;
-
+    private List<RaycastHit2D> castCollisions = new List<RaycastHit2D>();
     public SwordAttack swordAttack;
 
     void Start()
@@ -25,7 +25,6 @@ public class PlayerController : MonoBehaviour
     private void FixedUpdate()
     {
         PlayerMovement();
-        MovementDirection();
     }
 
     private void PlayerMovement()
@@ -36,8 +35,8 @@ public class PlayerController : MonoBehaviour
             return;
         }
 
-        bool isSuccess = TryMove(movementInput) || TryMove(new Vector2(movementInput.x, 0)) || TryMove(new Vector2(0, movementInput.y));
-        animator.SetBool("isMoving", isSuccess);
+        bool isMovementSuccess = TryMove(movementInput) || TryMove(new Vector2(movementInput.x, 0)) || TryMove(new Vector2(0, movementInput.y));
+        animator.SetBool("isMoving", isMovementSuccess);
     }
 
     private bool TryMove(Vector2 direction)
@@ -57,41 +56,26 @@ public class PlayerController : MonoBehaviour
     private void OnMove(InputValue movementValue)
     {
         movementInput = movementValue.Get<Vector2>();
-    }
+        if (movementInput != Vector2.zero)
+        {
+            animator.SetFloat("Xinput", movementInput.x);
+            animator.SetFloat("Yinput", movementInput.y);
 
-    private void MovementDirection()
-    {
-        if (movementInput.x < 0)
-        {
-            spriteRenderer.flipX = true;
         }
-        else if (movementInput.x > 0)
-        {
-            spriteRenderer.flipX = false;
-        }
-    }
-
-    private void SwordAttack()
-    {
-        if (spriteRenderer.flipX == true)
-        {
-            swordAttack.AttackLeft();
+        if (movementInput.x < 0){
+            spriteRenderer.flipX= true;
         }
         else
         {
-            swordAttack.AttackRight();
+            spriteRenderer.flipX= false;
         }
-    }
-
-    void EndSwordAttack()
-    {
-        swordAttack.StopAttack();
     }
 
     void OnParry() // Added the OnParry method back
     {
         animator.SetTrigger("swordAttack");
+       
     }
 
-    private List<RaycastHit2D> castCollisions = new List<RaycastHit2D>();
+    
 }

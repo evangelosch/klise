@@ -6,31 +6,14 @@ public class SwordAttack : MonoBehaviour
     public GameObject audioSource;
     public float damage = 2;
 
-    private Vector2 rightAttackOffset;
+
 
     void Start()
     {
         swordCollider = GetComponent<Collider2D>();
-        rightAttackOffset = transform.localPosition;
         audioSource = GameObject.FindGameObjectWithTag("parry");
     }
 
-    public void AttackRight()
-    {
-        swordCollider.enabled = true;
-        transform.localPosition = rightAttackOffset;
-    }
-
-    public void AttackLeft()
-    {
-        swordCollider.enabled = true;
-        transform.localPosition = new Vector2(-rightAttackOffset.x, rightAttackOffset.y);
-    }
-
-    public void StopAttack()
-    {
-        swordCollider.enabled = false;
-    }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
@@ -52,5 +35,15 @@ public class SwordAttack : MonoBehaviour
                 audioSource.GetComponent<AudioSource>().Play();
             }
         }
+    }
+
+    public void EnableSwordCollider()
+    {
+        swordCollider.enabled= true;
+    }
+
+    public void DisableSwordCollider()
+    {
+        swordCollider.enabled = false;
     }
 }
