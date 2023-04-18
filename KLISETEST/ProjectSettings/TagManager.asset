@@ -12,6 +12,7 @@ TagManager:
   - HealthSlider
   - playerBullet
   - crosshair
+  - swordHitBox
   layers:
   - Default
   - TransparentFX

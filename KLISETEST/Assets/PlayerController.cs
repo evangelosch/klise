@@ -62,12 +62,19 @@ public class PlayerController : MonoBehaviour
             animator.SetFloat("Yinput", movementInput.y);
 
         }
+        if (movementInput.x < 0){
+            spriteRenderer.flipX= true;
+        }
+        else
+        {
+            spriteRenderer.flipX= false;
+        }
     }
 
     void OnParry() // Added the OnParry method back
     {
         animator.SetTrigger("swordAttack");
-        Debug.Log("called parry");
+       
     }
 
     

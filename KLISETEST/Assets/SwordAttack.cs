@@ -36,4 +36,14 @@ public class SwordAttack : MonoBehaviour
             }
         }
     }
+
+    public void EnableSwordCollider()
+    {
+        swordCollider.enabled= true;
+    }
+
+    public void DisableSwordCollider()
+    {
+        swordCollider.enabled = false;
+    }
 }

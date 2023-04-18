@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 7626585350933132003}
   - component: {fileID: 8552869807096415616}
   - component: {fileID: 2640253895264041087}
+  - component: {fileID: 4024203625455887893}
   m_Layer: 0
   m_Name: SwordHitBox
   m_TagString: Untagged
@@ -93,6 +94,22 @@ MonoBehaviour:
   swordCollider: {fileID: 0}
   audioSource: {fileID: 0}
   damage: 2
+--- !u!114 &4024203625455887893
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3944300760756479004}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f6d50febb9d651642b7048d7ed1a76d3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animator: {fileID: 0}
+  animationNames: []
+  enableSwordColliderNormalizedTime: 0
+  disableSwordColliderNormalizedTime: 0
 --- !u!1 &6176860624369105652
 GameObject:
   m_ObjectHideFlags: 0
@@ -114,6 +131,7 @@ GameObject:
   - component: {fileID: 4407681414669669190}
   - component: {fileID: 7329234175566763805}
   - component: {fileID: 219469919304249069}
+  - component: {fileID: 7051739609760193432}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -429,6 +447,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 246366337d31aaa49a55062c2663a333, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &7051739609760193432
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6176860624369105652}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e0e0cc935d5ab6c4d9dbb0c836325aa6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1001 &2138355350138933560
