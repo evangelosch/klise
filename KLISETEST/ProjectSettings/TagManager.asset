@@ -13,6 +13,9 @@ TagManager:
   - playerBullet
   - crosshair
   - swordHitBox
+  - enemyHealthBarImage
+  - enemyHealthBarSlider
+  - EnemyHealthBarCanvas
   layers:
   - Default
   - TransparentFX
