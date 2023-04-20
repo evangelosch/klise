@@ -23,14 +23,4 @@ public class PlayerBullet : MonoBehaviour
         Destroy(gameObject);
     }
 
-  /*  private void OnTriggerEnter2D(Collider2D collider)
-    {
-        if (collider.gameObject.CompareTag("Player"))
-        {
-            Debug.Log("bullet collision");
-            PlayerHealth playerHealth = collider.gameObject.GetComponent<PlayerHealth>();
-            playerHealth.TakeDamage(1);
-            destroyBullet();
-        }
-    }*/
 }

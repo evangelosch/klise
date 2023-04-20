@@ -34,7 +34,6 @@ public class DashController : MonoBehaviour
         Collider2D[] hitObjects = Physics2D.OverlapCircleAll(transform.position, bulletDetectionRadius);
         foreach (Collider2D hitObject in hitObjects)
         {
-            Debug.Log("Hit object tag: " + hitObject.tag);
             if (hitObject.tag == "bullet")
             {
 

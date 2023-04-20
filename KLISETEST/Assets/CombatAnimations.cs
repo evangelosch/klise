@@ -8,25 +8,17 @@ public class CombatAnimations : MonoBehaviour
     private void Awake()
     {
         attackAnimations = Resources.LoadAll<AnimationClip>("");
-        Debug.Log("Loaded " + attackAnimations.Length + " animations"); // Add this line
-
-
-        //swordCollider = transform.Find("swordHitBox").GetComponent<BoxCollider2D>();
         swordCollider = GameObject.FindGameObjectWithTag("swordHitBox").GetComponent<BoxCollider2D>();
-        Debug.Log("Sword collider: " + swordCollider);
-
         AddAnimationEvents();
     }
 
     public void EnableSwordCollider()
     {
-        Debug.Log("Enabling sword collider"); // Add this line
         swordCollider.enabled = true;
     }
 
     public void DisableSwordCollider()
     {
-        Debug.Log("Disabling sword collider"); // Add this line
         swordCollider.enabled = false;
     }
 

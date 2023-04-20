@@ -8,7 +8,6 @@ public class EnemyBulletCollision : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("bullet"))
         {
-            Debug.Log("damage taken");
             playerHealth.TakeDamage(1);
             Destroy(collision.gameObject);
         }
