@@ -4,7 +4,7 @@ public class SwordAttack : MonoBehaviour
 {
     public BoxCollider2D swordCollider;
     public GameObject audioSource;
-    public float damage = 2;
+    private int damage = 1;
 
     private Vector2 offsetRight = new Vector2(0.1701258f, 1.393821f);
     private Vector2 offsetLeft = new Vector2(-1.237372f, 1.531497f);
@@ -63,10 +63,11 @@ public class SwordAttack : MonoBehaviour
     {
         if (other.CompareTag("Enemy"))
         {
-            Enemy enemy = other.GetComponent<Enemy>();
-            if (enemy != null)
+            EnemyHealth enemyHealth = other.GetComponent<EnemyHealth>();
+            if (enemyHealth != null)
             {
-                enemy.Health -= damage;
+                enemyHealth.TakeDamage(damage);
+                Debug.Log(damage);
             }
         }
         else if (other.CompareTag("bullet"))

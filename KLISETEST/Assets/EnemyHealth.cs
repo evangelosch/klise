@@ -1,16 +1,15 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class EnemyHealth : MonoBehaviour
 {
-    public int maxHealth = 3;
+    public int maxHealth = 4;
     private int currentHealth;
 
     public GameObject healthBarPrefab;
-    private EnemyHealthBar enemyHealthBar;
+    private Slider healthSlider; // Add healthSlider here
     private Transform healthBarCanvas;
+
     private void Start()
     {
         currentHealth = maxHealth;
@@ -22,8 +21,8 @@ public class EnemyHealth : MonoBehaviour
         healthBarCanvas = Instantiate(healthBarPrefab, transform.position, Quaternion.identity).transform;
         healthBarCanvas.SetParent(transform);
         healthBarCanvas.transform.localPosition = new Vector3(0, 1f, 0);
-        enemyHealthBar = GameObject.FindGameObjectWithTag("EnemyHealthBarCanvas").GetComponent<EnemyHealthBar>();
-        enemyHealthBar.SetMaxHealth(maxHealth);
+        healthSlider = GetComponentInChildren<Slider>(); // Modify this line
+        SetMaxHealth(maxHealth);
     }
 
     private void Update()
@@ -46,12 +45,24 @@ public class EnemyHealth : MonoBehaviour
     public void TakeDamage(int damage)
     {
         currentHealth -= damage;
-        enemyHealthBar.SetHealth(currentHealth);
+        SetHealth(currentHealth);
 
         if (currentHealth <= 0)
         {
             Destroy(healthBarCanvas.gameObject);
             Destroy(gameObject);
         }
+    }
+
+    public void SetMaxHealth(int maxHealth)
+    {
+        this.maxHealth = maxHealth;
+        healthSlider.maxValue = maxHealth;
+        healthSlider.value = maxHealth;
+    }
+
+    public void SetHealth(int currentHealth)
+    {
+        healthSlider.value = currentHealth;
     }
 }
